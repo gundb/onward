@@ -1,0 +1,35 @@
+<html>
+	<body>
+		Open up the Console!
+		<script src="https://rawgit.com/amark/gun/master/gun.js"></script>
+		<script src="./onDeepChange.js"></script>
+		<script>
+			localStorage.clear();
+			var gun = Gun().get('on/deep/change').onDeepChange(function(val, field){
+				console.log("Change!", field, val);
+			}, {_: false});
+			
+			var alice = gun.set({
+				name: "Alice",
+				location: {lat: 20, lng: 40},
+				direction: 15
+			})
+			var bob = gun.set({
+				name: "Bob",
+				location: {lat: 21, lng: 41},
+				direction: 16
+			})
+			var carl = gun.set({
+				name: "Carl",
+				location: {lat: 22, lng: 42},
+				direction: 17
+			});
+			setTimeout(function(){
+				bob.path('location.lat').put(12);
+				setTimeout(function(){
+					carl.path('location.lat').put({a: 'b', c: 'd'});
+				}, 1000);
+			}, 1000);
+		</script>
+	</body>
+</html>
