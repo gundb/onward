@@ -16,3 +16,7 @@ gun.get('some/key').onDeepChange(function(change, path){}, opt)
 - `opt` as `true` aggregates into an `{full: true}` where
 
   - `opt.full` is `true` gives you the full node back on every call rather than only what has changed.
+
+##Warning
+
+This is intended for when you are using GUN in a document oriented way, if you use it with graph or relational based data it might result in an infinite loop or loading your entire dataset!
