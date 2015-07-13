@@ -5,8 +5,8 @@
 		<script src="./onDeepChange.js"></script>
 		<script>
 			localStorage.clear();
-			var gun = Gun().get('on/deep/change').onDeepChange(function(val, field){
-				console.log("Change!", field, val);
+			var gun = Gun().get('on/deep/change').onDeepChange(function(val, path){
+				console.log("Change!", path, val);
 			}, {_: false});
 			
 			var alice = gun.set({
