@@ -3,7 +3,7 @@
 	root.Gun = root.Gun || require('../gun');
 }(this));
 
-Gun.chain.onDeepChange = function(cb, opt){
+Gun.chain.onward = function(cb, opt){
 	var gun = this;
 	cb = cb || function(){};
 	opt = (opt === true? {full: true} : opt || {});
@@ -20,7 +20,7 @@ Gun.chain.onDeepChange = function(cb, opt){
 				var soul = Gun.is.soul(val);
 				if(opt.ctx[soul + field]){ return } // do not re-subscribe.
 				opt.ctx[soul + field] = true; // unique subscribe!
-				this.path(field).onDeepChange(cb, o);
+				this.path(field).onward(cb, o);
 				return;
 			}
 		}, this);
