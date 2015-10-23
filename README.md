@@ -1,12 +1,12 @@
-# onDeepChange
+# onward
 Be notified when any path on your Document Oriented data changes.
 
 ##Demo
-http://jsbin.com/zukekabeko/edit?html,console
+http://jsbin.com/qivezenuwu/1/edit?html,console
 
 ##API
 ```javascript
-gun.get('some/key').onDeepChange(function(change, path){}, opt)
+gun.get('some/key').onward(function(change, path){}, opt)
 ```
 
 - `change` is the an object with field/value pairs.
