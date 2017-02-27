@@ -17,7 +17,7 @@ Gun.chain.onward = function(cb, opt){
 			if(Gun._.meta == field){ return }
 			if(Gun.obj.is(val)){
 				delete change[field];
-				var soul = Gun.is.rel(val);
+				var soul = Gun.val.rel.is(val);
 				if(opt.ctx[soul + field]){ return } // do not re-subscribe.
 				opt.ctx[soul + field] = true; // unique subscribe!
 				this.path(field).onward(cb, o);
