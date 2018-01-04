@@ -10,6 +10,7 @@ Gun.chain.onward = function(cb, opt){
 	opt.ctx = opt.ctx || {};
 	opt.path = opt.path || [];
 	gun.on(function(change, field){
+		change = Gun.obj.copy(change); // due to the 'leak' bug
 		var o = Gun.obj.copy(opt);
 		o.path = opt.path.slice(0);
 		if(field){ o.path.push(field) }
@@ -20,7 +21,12 @@ Gun.chain.onward = function(cb, opt){
 				var soul = Gun.val.rel.is(val);
 				if(opt.ctx[soul + field]){ return } // do not re-subscribe.
 				opt.ctx[soul + field] = true; // unique subscribe!
-				this.path(field).onward(cb, o);
+				//this.path(field).onward(cb, o);
+				/*
+				   path() is not included by default
+				   so change to 'get()' or include path.js
+				*/
+				this.get(field).onward(cb, o); 
 				return;
 			}
 		}, this);
